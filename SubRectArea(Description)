@@ -1,0 +1,95 @@
+Problem:
+
+	We have a square-shaped field. The field has a side of length n and it is divided into n2 squares of side 1. We wish to build a house on this field. Unfortunately this field has trees on a few squares. Since we don’t want to cut down any trees, we need to select a rectangular patch of land in the field to build the house. The rectangle must not have any trees. We seek for a rectangle of the largest area, as we want the biggest possible house.
+
+Input:
+
+	Input 1: The size of matrix, arr (N)
+	Input 2: A 2D matrix filled with 1 and 0.
+
+Output:
+	The area of the rectangle where house can be built, maxRect.
+	
+Assumption:
+
+	1 represents a square block containing land.
+	0 represents a square block containing tree.
+	
+Explanation:
+	
+	This problem is the combination of two topics, i.e., Kadane's Algorithm and Histogram.
+	
+	Kadane's Algorthm (Largest sum contiguous subarray)-
+			(a) max_ending_here = max_ending_here + a[i]
+			(b) if(max_ending_here < 0) max_ending_here = 0
+			(c) if(max_so_far < max_ending_here) 
+				max_so_far = max_ending_here
+			     return max_so_far
+			     
+	Histogram-
+			(a) create an empty stack and initialize it to 0 or null.
+			(b) if current value is equal or bigger top of stack
+				add to stack 
+			(c) else
+				keep removing from stack till element which is smaller or equal than element is found.
+			(d) calculate area every time you remove 
+				if( stack isEmpty)
+					area = temp[top] * index
+				else
+					area = temp[top] * (index - stack_top -1)
+					
+	Filename: SubRectArea.java
+		
+			The solution code contains 3 methods.
+			1. void main()
+			2. int maximum()
+			3. int maxHistogram()
+			
+			1. main() accepts the size,N of an array as the first input and the elements of an array as second inputs.
+			    It then passes the control to the maximum() by passing the array elements.
+			    
+			2. maximum() has a temp[] array to store the row elements each time by comparing the arr[i][j] = 0 or not.
+				if arr[i][j] = 0
+					temp[j] has 0
+				else
+					temp[j] = temp[j] + arr[i][j]
+					
+				The temp array is then passed to the maxHistogram() and the return value is stored in the variable, area.
+					if area > maxArea
+						maxArea = area
+			  return maxArea to main() to print it.
+			  
+			3. maxHistogram() accepts temp[] and then stored in the form of a stack data structure. 
+				if stack isEmpty OR temp[last element of stack] <= temp[index]
+					inserts the specified element at the end of the deque into the stack
+				else
+					top = retrieves and removes the last element of the deque
+					if stack isEmpty,
+						area = temp[top] * index
+					else
+						area = temp[top] * (index - stack_top - 1)
+					if area > maxArea,
+						maxArea = area
+						
+				while stack isNotEmpty
+					top = retrieves and removes the last element of the deque
+					if stack isEmpty
+						inserts the specified element at the end of the deque into the stack
+					else
+						area = temp[top] * (index - stack_top - 1)
+					if area > maxArea,
+						maxArea = area
+						
+					return maxArea to maximum().
+					
+Sample Output 1:
+	
+	5
+	0	1	0	1	0
+	0	0	0	0	0
+	0	0	0	0	1
+	1	0	0	0	0
+	0	1	0	0	0
+	
+	9
+

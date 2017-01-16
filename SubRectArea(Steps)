@@ -1,0 +1,32 @@
+Steps to compile and run:
+
+Approach (a)-
+Step 1:
+	Browse to file SubRectArea.java
+	
+Step 2: (in terminal)
+	Open terminal
+	
+Step 3:
+	run	$javac SubRectArea.java
+	
+Step 4:
+	run $java SubRectArea
+
+Step 5:
+	Provide inputs and output is retrieved.
+	
+*******************OR*******************
+
+Approach (b)-
+Step 1:
+	Open IDE(NetBeans)
+
+Step 2:
+	Open and browse to file SubRectArea.java
+
+Step 3:
+	Run (Shift + f6)
+	
+Step 4:
+	Provide inputs and output is retrieved.
